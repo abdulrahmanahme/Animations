@@ -19,7 +19,7 @@ class _MyHomePageState extends State<HomeScreen>
     super.initState();
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: 2),
     );
     animation = Tween<double>(begin: 0, end: 12).animate(animationController)
       ..addListener(() {
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<HomeScreen>
           ),
           IconButton(
             onPressed: () {
-              animationController.reset();
+              animationController.reverse();
             },
             icon: const Icon(
               Icons.arrow_back,
