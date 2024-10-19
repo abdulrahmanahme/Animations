@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _MyHomePageState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
-  late Animation<double> animation;
+  late Animation animation;
 
   @override
   void initState() {
@@ -21,7 +21,9 @@ class _MyHomePageState extends State<HomeScreen>
       vsync: this,
       duration: Duration(seconds: 2),
     );
-    animation = Tween<double>(begin: 0, end: 12).animate(animationController)
+    animation = ColorTween(begin: Colors.red, end: Colors.blue).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.bounceInOut),
+    )
       ..addListener(() {
         setState(() {});
       })
@@ -51,9 +53,24 @@ class _MyHomePageState extends State<HomeScreen>
             Text(
               'Animated controller  value  ${animationController.value.toStringAsFixed(2)}',
             ),
-            Text(
-              'Animated value ${animation.value.toStringAsFixed(2)}',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Container(
+              height: 100,
+              width: 100,
+              color: animation.value,
+            ),
+
+            ///Animated padding
+            AnimatedPadding(
+              curve: Curves.bounceInOut,
+              padding: EdgeInsets.all(5),
+              duration: Duration(seconds: 2),
+              child: Text(
+                'Animated value ${animation.value}',
+                style: TextStyle(
+                  color: animation.value,
+                  fontSize: 20,
+                ),
+              ),
             ),
           ],
         ),
