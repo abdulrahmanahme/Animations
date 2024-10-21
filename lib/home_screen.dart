@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,6 +15,9 @@ class _MyHomePageState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation animation;
+  double height = 100;
+  double width = 100;
+  Color color = Colors.green;
 
   @override
   void initState() {
@@ -72,6 +77,18 @@ class _MyHomePageState extends State<HomeScreen>
                 ),
               ),
             ),
+
+            ///////////TweenAnimationBuilder 
+           
+
+            ///Animated Container
+            AnimatedContainer(
+              curve: Curves.bounceInOut,
+              duration: const Duration(seconds: 2),
+              height: height,
+              width: width,
+              color: color,
+            ),
           ],
         ),
       ),
@@ -81,6 +98,10 @@ class _MyHomePageState extends State<HomeScreen>
           IconButton(
             onPressed: () {
               animationController.forward();
+              height = Random().nextDouble() * 200;
+              width = Random().nextDouble() * 200;
+              color = Color.fromARGB(255, Random().nextInt(255),
+                  Random().nextInt(255), Random().nextInt(255));
             },
             icon: const Icon(
               Icons.play_arrow,
