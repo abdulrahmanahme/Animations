@@ -19,12 +19,12 @@ class FooTransitionWidgetScreenState extends State<FooTransitionWidgetScreen>
   void initState() {
     super.initState();
     animationControllerGreen = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
       vsync: this,
       reverseDuration: const Duration(seconds: 3),
     );
     animationControllerYellow = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
       vsync: this,
     );
     greenAnimation = Tween<AlignmentGeometry>(
@@ -39,7 +39,18 @@ class FooTransitionWidgetScreenState extends State<FooTransitionWidgetScreen>
         curve: Curves.easeIn,
         reverseCurve: Curves.easeIn,
       ),
-    );
+    )..addListener(() {
+        if (animationControllerYellow.value >= 0.5) {
+          animationControllerGreen.forward();
+        }
+      });
+    // ..addStatusListener((status) {
+    //     // if (status == AnimationStatus.completed) {
+    //     //   animationControllerGreen.forward();
+    //     // } else if (status == AnimationStatus.dismissed) {
+    //     //   animationControllerGreen.reverse();
+    //     // }
+    //   });
   }
 
   @override
@@ -88,7 +99,7 @@ class FooTransitionWidgetScreenState extends State<FooTransitionWidgetScreen>
                   ),
                   onPressed: () {
                     animationControllerYellow.forward();
-                    animationControllerGreen.forward();
+                    // animationControllerGreen.forward();
                   },
                   child: const Text(
                     'Start',
@@ -102,7 +113,6 @@ class FooTransitionWidgetScreenState extends State<FooTransitionWidgetScreen>
                   onPressed: () {
                     animationControllerYellow.stop();
                     animationControllerGreen.stop();
-
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -118,7 +128,7 @@ class FooTransitionWidgetScreenState extends State<FooTransitionWidgetScreen>
                 ElevatedButton(
                   onPressed: () {
                     animationControllerYellow.repeat(reverse: true);
-                    animationControllerGreen.repeat(reverse: true);
+                    // animationControllerGreen.repeat(reverse: true);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
