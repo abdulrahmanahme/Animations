@@ -53,6 +53,14 @@ class FooTransitionWidgetScreenState extends State<FooTransitionWidgetScreen>
     //   });
   }
 
+  void valueListener() {
+    print(animationControllerGreen.value);
+  }
+
+  void statusListener(AnimationStatus animationStatus) {
+    print(animationStatus);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -135,6 +143,72 @@ class FooTransitionWidgetScreenState extends State<FooTransitionWidgetScreen>
                   ),
                   child: const Text(
                     'Reverse',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                /////
+                ElevatedButton(
+                  onPressed: () {
+                    animationControllerYellow..addListener(valueListener);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text(
+                    'Add listener value',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    animationControllerYellow..removeListener(valueListener);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text(
+                    'Remove listener value',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+
+                ///
+
+                ElevatedButton(
+                  onPressed: () {
+                    animationControllerYellow
+                      ..addStatusListener(statusListener);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text(
+                    'Remove addStatusListener',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    animationControllerYellow
+                      ..removeStatusListener(statusListener);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text(
+                    'Remove StatusListener',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
