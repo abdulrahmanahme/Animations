@@ -22,6 +22,8 @@ class FooTransitionWidgetScreenState extends State<FooTransitionWidgetScreen>
       duration: const Duration(seconds: 2),
       vsync: this,
       reverseDuration: const Duration(seconds: 3),
+    )..repeat(
+      reverse: false
     );
     animationControllerYellow = AnimationController(
       duration: const Duration(seconds: 2),

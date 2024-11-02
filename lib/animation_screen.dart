@@ -1,10 +1,16 @@
-import 'package:animations/animations/animated_builder_screen.dart';
-import 'package:animations/animations/animated_cross_fade.dart';
-import 'package:animations/animations/animated_list_screen.dart';
+import 'package:animations/animations/foo_transiotion_animtion/animated_builder_screen.dart';
+import 'package:animations/animations/foo_transiotion_animtion/animated_cross_fade.dart';
+import 'package:animations/animated_list_screen.dart';
+import 'package:animations/animations/fade_transition_screen.dart';
+import 'package:animations/animations/page_animation/page_fade_transition.dart';
+import 'package:animations/animations/page_animation/page_rotation_transition.dart';
+import 'package:animations/animations/page_animation/page_size_transition.dart';
+import 'package:animations/animations/page_animation/page_slide_transition.dart';
+import 'package:animations/animations/foo_transiotion_animtion/rotation_animation_screen.dart';
 import 'package:animations/animations/tween_animated_builder.dart';
 import 'package:flutter/material.dart';
 
-import 'animations/foo_transition_widget.dart';
+import 'animations/foo_transiotion_animtion/foo_transition_widget.dart';
 
 class AnimationScreen extends StatelessWidget {
   const AnimationScreen({super.key});
@@ -14,9 +20,8 @@ class AnimationScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
+   
           children: [
             CustomAnimation(
               title: 'TweenAnimatedBuilder ',
@@ -73,6 +78,67 @@ class AnimationScreen extends StatelessWidget {
                 );
               },
             ),
+            CustomAnimation(
+              title: 'RotationAnimationScreen ',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RotationAnimationScreen(),
+                  ),
+                );
+              },
+            ),
+            CustomAnimation(
+              title: 'FadeTransitionScreen ',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FadeTransitionScreen(),
+                  ),
+                );
+              },
+            ),
+            ///// Page Transition
+              CustomAnimation(
+              title: 'PageFadeTransition ',
+              onTap: () {
+                Navigator.push(
+                  context,
+                 PageFadeTransition(newPage:const FadeTransitionScreen())
+                );
+              },
+            ),
+            CustomAnimation(
+              title: 'PageRotationTransition ',
+              onTap: () {
+                Navigator.push(
+                  context,
+                 PageRotationTransition(newPage:const FadeTransitionScreen())
+                );
+              },
+            ),
+             CustomAnimation(
+              title: 'PageSlideTransition ',
+              onTap: () {
+                Navigator.push(
+                  context,
+                 PageSlideTransition(newPage:const FadeTransitionScreen())
+                );
+              },
+            ),
+            CustomAnimation(
+              title: 'PageSizeTransition ',
+              onTap: () {
+                Navigator.push(
+                  context,
+                 PageSizeTransition(newPage:const FadeTransitionScreen())
+                );
+              },
+            ),
+            
+            
           ],
         ),
       ),
